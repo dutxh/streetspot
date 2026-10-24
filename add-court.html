@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Добавление площадки — Street Spot</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-container">
+      <div class="header-brand">
+        <a href="index.html" class="logo">Street Spot</a>
+        <p class="city-picker">Город: <span>Екатеринбург</span></p>
+      </div>
+
+      <nav class="nav" aria-label="Основная навигация">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="courts.html" class="nav-link">Площадки</a></li>
+          <li class="nav-item"><a href="login.html" class="nav-link">Вход / Регистрация</a></li>
+          <li class="nav-item"><a href="profile.html" class="nav-link">Личный кабинет</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <section class="section">
+        <div class="shapka-razdela">
+          <h1 class="section-title">Добавить площадку</h1>
+          <span class="metka">4 шага</span>
+        </div>
+
+        <form action="#" method="post" enctype="multipart/form-data" class="add-court-form">
+          <div class="form-steps-grid">
+            
+            <fieldset class="court-card step-card">
+              <legend class="step-card-title">Добавь общую информацию о площадке</legend>
+              
+              <div class="form-group">
+                <label for="court-name" class="form-label">Название площадки</label>
+                <input type="text" id="court-name" name="court_name" class="form-control" placeholder="Например: Корт на набережной" required>
+              </div>
+
+              <div class="form-group">
+                <label for="court-address" class="form-label">Адрес / Локация</label>
+                <input type="text" id="court-address" name="court_address" class="form-control" placeholder="Улица, дом или ориентир" required>
+              </div>
+
+              <div class="form-group">
+                <label for="court-type" class="form-label">Тип доступа</label>
+                <select id="court-type" name="court_type" class="form-control">
+                  <option value="public">Открытый / бесплатный</option>
+                  <option value="private">Платный корт</option>
+                  <option value="school">Школьная / дворовая территория</option>
+                </select>
+              </div>
+            </fieldset>
+
+            <fieldset class="court-card step-card">
+              <legend class="step-card-title">Добавь фото</legend>
+              
+              <div class="zona-zagruzki">
+                <label for="court-photos" class="podpis-zagruzki">
+                  <span class="tekst-zagruzki">Нажмите, чтобы выбрать файлы</span>
+                  <span class="podskazka-zagruzki">JPG, PNG, WEBP до 10 МБ</span>
+                </label>
+                <input type="file" id="court-photos" name="court_photos" class="zagruzka-fayla" accept="image/*" multiple required>
+              </div>
+            </fieldset>
+
+            <fieldset class="court-card step-card">
+              <legend class="step-card-title">Напиши краткое описание</legend>
+              
+              <div class="form-group gruppa-polya-bolshaya">
+                <label for="court-description" class="form-label">Описание и состояние</label>
+                <textarea id="court-description" name="court_description" rows="6" class="form-control bolshoe-pole" placeholder="Расскажите о состоянии покрытия, щитов, сеток и освещения..." required></textarea>
+              </div>
+            </fieldset>
+
+            <fieldset class="court-card step-card">
+              <legend class="step-card-title">Укажи фильтры</legend>
+              
+              <div class="blok-filtrov">
+                <p class="filter-subtitle">Покрытие</p>
+                <div class="spisok-radio">
+                  <label class="filter-checkbox"><input type="radio" name="surface" value="rubber" checked> Резиновая крошка</label>
+                  <label class="filter-checkbox"><input type="radio" name="surface" value="asphalt"> Асфальт</label>
+                  <label class="filter-checkbox"><input type="radio" name="surface" value="wood"> Паркет / Дерево</label>
+                </div>
+              </div>
+
+              <div class="blok-filtrov">
+                <p class="filter-subtitle">Особенности и инвентарь</p>
+                <div class="spisok-chekboksov">
+                  <label class="filter-checkbox"><input type="checkbox" name="lighting" value="yes"> Освещение вечером</label>
+                  <label class="filter-checkbox"><input type="checkbox" name="rings_net" value="yes"> Сетки на кольцах</label>
+                  <label class="filter-checkbox"><input type="checkbox" name="fenced" value="yes"> Ограждение площадки</label>
+                </div>
+              </div>
+            </fieldset>
+
+          </div>
+
+          <div class="form-submit-row">
+            <button type="submit" class="btn btn-accent btn-large">Добавить площадку</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-container">
+      <section class="footer-info">
+        <p class="footer-copy">&copy; 2026 Street Spot. Все права защищены.</p>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">О сервисе</a></li>
+          <li><a href="#" class="footer-link">Служба поддержки</a></li>
+        </ul>
+      </section>
+    </div>
+  </footer>
+
+</body>
+</html>

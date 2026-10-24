@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Корт в парке — Street Spot</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-container">
+      <div class="header-brand">
+        <a href="index.html" class="logo">Street Spot</a>
+        <p class="city-picker">Город: <span>Екатеринбург</span></p>
+      </div>
+
+      <nav class="nav" aria-label="Основная навигация">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="courts.html" class="nav-link">Площадки</a></li>
+          <li class="nav-item"><a href="login.html" class="nav-link">Вход / Регистрация</a></li>
+          <li class="nav-item"><a href="profile.html" class="nav-link">Личный кабинет</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <h1 class="section-title page-heading">Корт в парке имени Павлика Морозова</h1>
+
+      <div class="court-detail-layout">
+        <section class="court-card court-main-info">
+          <h2 class="court-card-title">Информация о площадке</h2>
+          
+          <figure class="court-media">
+            <img src="img/court-photo1.png" alt="Фото баскетбольной площадки на набережной" class="court-image">
+          </figure>
+
+          <div class="court-specs">
+            <p><strong>Адрес:</strong> Парк имени Павлика Морозова, ул. Декабристов 16/18г</p>
+            <p><strong>Покрытие:</strong> Бесшовная резиновая крошка</p>
+            <p><strong>Кольца:</strong> 8 полноразмерных колец с сетками</p>
+            <p><strong>Освещение:</strong> Работает круглосуточно</p>
+            <p><strong>Доступ:</strong> Свободный, бесплатный</p>
+          </div>
+
+          <form action="#" method="post" class="court-play-form">
+            <button type="button" class="btn btn-accent btn-block join-btn">Я буду играть</button>
+          </form>
+        </section>
+
+        <div class="court-side-column">
+          <section class="court-card court-description-card">
+            <h2 class="court-card-title">Описание</h2>
+            <p class="court-text">
+              Популярная открытая площадка с качественным упругим покрытием и надежными металлическими щитами. Отлично подходит как для классических игр 5х5 на всё поле, так и для стритбола 3х3 на одно кольцо. В вечернее время площадка хорошо освещается.
+            </p>
+          </section>
+
+          <section class="court-card court-players-card">
+            <h2 class="court-card-title">Список игроков планирующих играть сегодня</h2>
+            <p class="players-counter">Планируют играть сегодня: <span class="players-count">4</span> чел.</p>
+            <ul class="players-list">
+              <li class="player-item">
+                <span class="player-name">Алексей С.</span>
+                <span class="player-time">18:30</span>
+              </li>
+              <li class="player-item">
+                <span class="player-name">Михаил Д.</span>
+                <span class="player-time">19:00</span>
+              </li>
+              <li class="player-item">
+                <span class="player-name">Кирилл Н.</span>
+                <span class="player-time">19:00</span>
+              </li>
+              <li class="player-item">
+                <span class="player-name">Дмитрий М.</span>
+                <span class="player-time">19:30</span>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </div>
+
+      <section class="court-card reviews-section">
+        <h2 class="court-card-title">Отзывы</h2>
+
+        <form action="#" method="post" class="review-form">
+          <h3 class="review-form-title">Оставить свой отзыв</h3>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="review-author" class="form-label">Ваше имя</label>
+              <input type="text" id="review-author" name="author" class="form-control" placeholder="Имя или никнейм" required>
+            </div>
+
+            <div class="form-group">
+              <label for="review-rating" class="form-label">Оценка</label>
+              <select id="review-rating" name="rating" class="form-control">
+                <option value="5">5 — Отлично</option>
+                <option value="4">4 — Хорошо</option>
+                <option value="3">3 — Удовлетворительно</option>
+                <option value="2">2 — Плохо</option>
+                <option value="1">1 — Ужасно</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="review-text" class="form-label">Текст отзыва</label>
+            <textarea id="review-text" name="comment" rows="3" class="form-control" placeholder="Поделитесь впечатлениями о покрытии, кольцах и атмосфере..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-search">Отправить отзыв</button>
+        </form>
+
+        <div class="reviews-list">
+          <article class="review-item">
+            <div class="review-header">
+              <h3 class="review-author">Александр</h3>
+              <span class="review-badge">5 из 5</span>
+            </div>
+            <p class="review-text">Отличное покрытие, ноги не скользят даже после небольшого дождя. Сетки на кольцах свежие!</p>
+          </article>
+
+          <article class="review-item">
+            <div class="review-header">
+              <h3 class="review-author">Иван</h3>
+              <span class="review-badge">4 из 5</span>
+            </div>
+            <p class="review-text">Площадка хорошая, но вечером собирается очень много народа — приходится ждать своей очереди играть на кольцо.</p>
+          </article>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-container">
+      <section class="footer-info">
+        <p class="footer-copy">&copy; 2026 Street Spot. Все права защищены.</p>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">О сервисе</a></li>
+          <li><a href="#" class="footer-link">Служба поддержки</a></li>
+        </ul>
+      </section>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+
+</body>
+</html>

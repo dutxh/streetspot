@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Панель администратора — Street Spot</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-container">
+      <div class="header-brand">
+        <a href="index.html" class="logo">Street Spot</a>
+        <p class="city-picker">Город: <span>Екатеринбург</span></p>
+      </div>
+
+      <nav class="nav" aria-label="Основная навигация">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="courts.html" class="nav-link">Площадки</a></li>
+          <li class="nav-item"><a href="profile.html" class="nav-link">Личный кабинет</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <h1 class="section-title page-heading">Панель администратора</h1>
+
+      <section class="section">
+        <h2 class="admin-section-title">Список заявок на добавление площадок:</h2>
+
+        <div class="admin-requests-grid">
+          
+          <article class="court-card admin-card">
+            <div>
+              <div class="admin-card-header">
+                <h3 class="court-card-title">Заявка 1: Площадка на ул. Ленина</h3>
+                <span class="metka">На проверке</span>
+              </div>
+              <div class="admin-meta">
+                <p><strong>Автор:</strong> Иван П.</p>
+                <p><strong>Адрес:</strong> ул. Ленина, д. 45</p>
+                <p><strong>Характеристики:</strong> Резина, 2 кольца, освещение</p>
+              </div>
+            </div>
+
+            <form action="#" method="post" class="admin-actions-form">
+              <input type="hidden" name="request_id" value="1">
+              <button type="submit" name="action" value="approve" class="btn btn-approve">Одобрить</button>
+              <button type="submit" name="action" value="reject" class="btn btn-reject">Отклонить</button>
+            </form>
+          </article>
+
+          <article class="court-card admin-card">
+            <div>
+              <div class="admin-card-header">
+                <h3 class="court-card-title">Заявка 2: Корт во дворе гимназии</h3>
+                <span class="metka">На проверке</span>
+              </div>
+              <div class="admin-meta">
+                <p><strong>Автор:</strong> Сергей К.</p>
+                <p><strong>Адрес:</strong> ул. Мира, д. 18</p>
+                <p><strong>Характеристики:</strong> Асфальт, 1 кольцо (стритбол)</p>
+              </div>
+            </div>
+
+            <form action="#" method="post" class="admin-actions-form">
+              <input type="hidden" name="request_id" value="2">
+              <button type="submit" name="action" value="approve" class="btn btn-approve">Одобрить</button>
+              <button type="submit" name="action" value="reject" class="btn btn-reject">Отклонить</button>
+            </form>
+          </article>
+
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="admin-section-title">Модерация отзывов:</h2>
+
+        <div class="admin-reviews-stack">
+          
+          <article class="court-card admin-review-card">
+            <div class="admin-review-content">
+              <div class="admin-review-header">
+                <h3 class="admin-review-title">Отзыв 1 — Корт на набережной</h3>
+                <span class="review-badge">5 из 5</span>
+              </div>
+              <p class="admin-author-info">Пользователь: <strong>Максим Т.</strong></p>
+              <blockquote class="admin-blockquote">
+                <p>Отличная площадка, играем каждые выходные! Сетки целые.</p>
+              </blockquote>
+            </div>
+
+            <form action="#" method="post" class="admin-actions-form admin-review-actions">
+              <input type="hidden" name="review_id" value="101">
+              <button type="submit" name="action" value="approve" class="btn btn-approve">Одобрить</button>
+              <button type="submit" name="action" value="delete" class="btn btn-reject">Удалить</button>
+            </form>
+          </article>
+
+          <article class="court-card admin-review-card">
+            <div class="admin-review-content">
+              <div class="admin-review-header">
+                <h3 class="admin-review-title">Отзыв 2 — Площадка в парке</h3>
+                <span class="review-badge">2 из 5</span>
+              </div>
+              <p class="admin-author-info">Пользователь: <strong>Артем В.</strong></p>
+              <blockquote class="admin-blockquote">
+                <p>Одно кольцо погнуто, сетки нет, освещение вечером не включают.</p>
+              </blockquote>
+            </div>
+
+            <form action="#" method="post" class="admin-actions-form admin-review-actions">
+              <input type="hidden" name="review_id" value="102">
+              <button type="submit" name="action" value="approve" class="btn btn-approve">Одобрить</button>
+              <button type="submit" name="action" value="delete" class="btn btn-reject">Удалить</button>
+            </form>
+          </article>
+
+          <article class="court-card admin-review-card">
+            <div class="admin-review-content">
+              <div class="admin-review-header">
+                <h3 class="admin-review-title">Отзыв 3 — Локация на Первомайской</h3>
+                <span class="review-badge">4 из 5</span>
+              </div>
+              <p class="admin-author-info">Пользователь: <strong>Игорь Д.</strong></p>
+              <blockquote class="admin-blockquote">
+                <p>Хорошее покрытие, но часто много детей на самокатах.</p>
+              </blockquote>
+            </div>
+
+            <form action="#" method="post" class="admin-actions-form admin-review-actions">
+              <input type="hidden" name="review_id" value="103">
+              <button type="submit" name="action" value="approve" class="btn btn-approve">Одобрить</button>
+              <button type="submit" name="action" value="delete" class="btn btn-reject">Удалить</button>
+            </form>
+          </article>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-container">
+      <section class="footer-info">
+        <p class="footer-copy">&copy; 2026 Street Spot. Все права защищены.</p>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">О сервисе</a></li>
+          <li><a href="#" class="footer-link">Служба поддержки</a></li>
+        </ul>
+      </section>
+    </div>
+  </footer>
+
+</body>
+</html>

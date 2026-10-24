@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Личный кабинет — Street Spot</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-container">
+      <div class="header-brand">
+        <a href="index.html" class="logo">Street Spot</a>
+        <p class="city-picker">Город: <span>Екатеринбург</span></p>
+      </div>
+
+      <nav class="nav" aria-label="Основная навигация">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="courts.html" class="nav-link">Площадки</a></li>
+          <li class="nav-item"><a href="profile.html" class="nav-link active" aria-current="page">Личный кабинет</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <section class="section">
+        <h1 class="section-title">Профиль</h1>
+
+        <div class="profile-layout">
+          
+          <article class="court-card profile-user-card">
+            <h2 class="court-card-title">Информация о пользователе</h2>
+            
+            <div class="profil-soderzhimoe">
+              <div class="profile-avatar-block">
+                <img src="img/nazarov.jpg" alt="Фото профиля пользователя" class="profile-avatar">
+              </div>
+
+              <div class="profile-details">
+                <p class="profile-info-row"><strong>Имя:</strong> Кирилл Назаров</p>
+                <p class="profile-info-row"><strong>Email:</strong> nazarov.k.r@gmail.com</p>
+                <p class="profile-info-row"><strong>Позиция:</strong> Разыгрывающий (PG)</p>
+                <p class="profile-info-row"><strong>Город:</strong> Екатеринбург</p>
+              </div>
+            </div>
+
+            <div class="profile-action-row">
+              <a href="adminpanel.html" class="btn btn-accent">Админ панель</a>
+            </div>
+          </article>
+
+          <article class="court-card profile-fav-card">
+            <h2 class="court-card-title">Любимая площадка</h2>
+            
+            <div class="fav-court-content">
+              <div class="fav-court-meta">
+                <h3 class="fav-court-name">Площадка в парке имени Павлика Морозова</h3>
+                <p class="fav-court-address">Парк имени Павлика Морозова, ул. Декабристов 16/18г</p>
+              </div>
+
+              <div class="fav-court-tags">
+                <span class="metka">Резина</span>
+                <span class="metka">Круглосуточно</span>
+                <span class="metka">Сетки целые</span>
+              </div>
+
+              <p class="fav-court-desc">
+                Основная точка сбора для вечерних игр 5х5. Отличное сцепление кроссовок и яркие фонари.
+              </p>
+
+              <div class="fav-court-action">
+                <a href="court.html" class="btn btn-secondary">Перейти к площадке</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-container">
+      <section class="footer-info">
+        <p class="footer-copy">&copy; 2026 Street Spot. Все права защищены.</p>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">О сервисе</a></li>
+          <li><a href="#" class="footer-link">Служба поддержки</a></li>
+        </ul>
+      </section>
+    </div>
+  </footer>
+
+</body>
+</html>
