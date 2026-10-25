@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="img/icon.svg">
   <title>Площадки в твоем городе — Street Spot</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -14,6 +15,12 @@
         <a href="index.html" class="logo">Street Spot</a>
         <p class="city-picker">Город: <span>Екатеринбург</span></p>
       </div>
+
+      <button type="button" class="nav-toggle" aria-label="Открыть меню" aria-expanded="false">
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
+      </button>
 
       <nav class="nav" aria-label="Основная навигация">
         <ul class="nav-list">
@@ -30,67 +37,18 @@
       <section class="section">
         <h1 class="section-title">Площадки в твоем городе</h1>
 
-        <div class="setka-kartochek">
-          <article class="court-card">
-            <h2 class="court-card-title">Площадка 1</h2>
-            <p class="court-card-desc">ул. Ленина, 45 • Резиновое покрытие • Сетки</p>
-            <a href="court.html" class="btn btn-secondary">Подробнее</a>
-          </article>
-
-          <article class="court-card">
-            <h2 class="court-card-title">Площадка 2</h2>
-            <p class="court-card-desc">Набережная • 2 полноразмерных кольца • Свет</p>
-            <a href="court.html" class="btn btn-secondary">Подробнее</a>
-          </article>
-
-          <article class="court-card">
-            <h2 class="court-card-title">Площадка 3</h2>
-            <p class="court-card-desc">Парк Маяковского • Асфальт • 3х3 корт</p>
-            <a href="court.html" class="btn btn-secondary">Подробнее</a>
-          </article>
+        <div class="search-input-group catalog-search">
+          <label for="catalog-query" class="skrytyy">Поиск площадки</label>
+          <input type="search" id="catalog-query" class="form-input catalog-query" placeholder="Поиск по названию или адресу">
         </div>
+
+        <div class="setka-kartochek" id="courts-list"></div>
+
+        <p class="catalog-empty" hidden>Площадки не найдены</p>
 
         <div class="banner">
           <p class="tekst-bannera">Нету площадки?</p>
           <a href="add-court.html" class="btn btn-accent">Добавить площадку</a>
-        </div>
-
-        <div class="setka-kartochek">
-          <article class="court-card">
-            <h2 class="court-card-title">Площадка 4</h2>
-            <p class="court-card-desc">ул. Мира, 19 • Дворовый корт • Сетки целые</p>
-            <a href="court.html" class="btn btn-secondary">Подробнее</a>
-          </article>
-
-          <article class="court-card">
-            <h2 class="court-card-title">Площадка 5</h2>
-            <p class="court-card-desc">СК «Юность» • Профессиональное покрытие • Свет</p>
-            <a href="court.html" class="btn btn-secondary">Подробнее</a>
-          </article>
-
-          <article class="court-card">
-            <h2 class="court-card-title">Площадка 6</h2>
-            <p class="court-card-desc">ул. Радищева, 33 • Стритбольная клетка 3х3</p>
-            <a href="court.html" class="btn btn-secondary">Подробнее</a>
-          </article>
-
-          <article class="court-card">
-            <h2 class="court-card-title">Площадка 7</h2>
-            <p class="court-card-desc">Стадион «Динамо» • Свободный вход • Асфальт</p>
-            <a href="court.html" class="btn btn-secondary">Подробнее</a>
-          </article>
-
-          <article class="court-card">
-            <h2 class="court-card-title">Площадка 8</h2>
-            <p class="court-card-desc">ул. 8 Марта, 62 • Новые щиты со стеклом</p>
-            <a href="court.html" class="btn btn-secondary">Подробнее</a>
-          </article>
-
-          <article class="court-card">
-            <h2 class="court-card-title">Площадка 9</h2>
-            <p class="court-card-desc">Парк УрГУПС • Живописный корт у воды</p>
-            <a href="court.html" class="btn btn-secondary">Подробнее</a>
-          </article>
         </div>
       </section>
     </div>
@@ -107,6 +65,8 @@
       </section>
     </div>
   </footer>
+
+  <script src="js/script.js"></script>
 
 </body>
 </html>

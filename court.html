@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="img/icon.svg">
   <title>Корт в парке — Street Spot</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -14,6 +15,12 @@
         <a href="index.html" class="logo">Street Spot</a>
         <p class="city-picker">Город: <span>Екатеринбург</span></p>
       </div>
+
+      <button type="button" class="nav-toggle" aria-label="Открыть меню" aria-expanded="false">
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
+      </button>
 
       <nav class="nav" aria-label="Основная навигация">
         <ul class="nav-list">
@@ -48,6 +55,7 @@
           <form action="#" method="post" class="court-play-form">
             <button type="button" class="btn btn-accent btn-block join-btn">Я буду играть</button>
           </form>
+          <button type="button" class="btn btn-secondary btn-block open-modal-btn modal-btn">Записаться на матч</button>
         </section>
 
         <div class="court-side-column">
@@ -56,6 +64,13 @@
             <p class="court-text">
               Популярная открытая площадка с качественным упругим покрытием и надежными металлическими щитами. Отлично подходит как для классических игр 5х5 на всё поле, так и для стритбола 3х3 на одно кольцо. В вечернее время площадка хорошо освещается.
             </p>
+          </section>
+
+          <section class="accordion">
+            <button type="button" class="accordion-toggle" aria-expanded="false">Правила площадки</button>
+            <div class="accordion-panel">
+              <p>Играем без грубости и споров: уступаем корт команде, которая ждёт дольше, и убираем за собой мусор после игры. Вечером освещение включается автоматически.</p>
+            </div>
           </section>
 
           <section class="court-card court-players-card">
@@ -148,6 +163,26 @@
       </section>
     </div>
   </footer>
+
+  <div class="modal" id="signup-modal" aria-hidden="true">
+    <div class="modal-overlay" data-modal-close></div>
+    <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="signup-modal-title">
+      <button type="button" class="modal-close" data-modal-close aria-label="Закрыть">&times;</button>
+      <h2 class="modal-title" id="signup-modal-title">Быстрая запись на матч</h2>
+      <p class="modal-text">Оставьте имя и удобное время — мы добавим вас в список игроков на сегодня.</p>
+      <form action="#" method="post" class="modal-form">
+        <div class="form-group">
+          <label for="modal-name" class="form-label">Ваше имя</label>
+          <input type="text" id="modal-name" name="name" class="form-control" placeholder="Имя или никнейм">
+        </div>
+        <div class="form-group">
+          <label for="modal-time" class="form-label">Время игры</label>
+          <input type="text" id="modal-time" name="time" class="form-control" placeholder="Например, 19:30">
+        </div>
+        <button type="submit" class="btn btn-accent btn-block">Записаться</button>
+      </form>
+    </div>
+  </div>
 
   <script src="js/script.js"></script>
 
