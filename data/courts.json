@@ -1,0 +1,11 @@
+[
+  { "id": 1, "name": "Корт в парке Павлика Морозова", "address": "ул. Декабристов, 16/18г", "surface": "Резина", "lighting": true, "nets": true, "favorite": false, "rating": 4.8, "players": 12 },
+  { "id": 2, "name": "Площадка на Набережной", "address": "ул. Горького, 4а", "surface": "Резина", "lighting": true, "nets": true, "favorite": true, "rating": 4.6, "players": 9 },
+  { "id": 3, "name": "Корт в парке Маяковского", "address": "ул. Мичурина, 230", "surface": "Асфальт", "lighting": false, "nets": true, "favorite": false, "rating": 4.1, "players": 15 },
+  { "id": 4, "name": "Дворовый корт на Мира", "address": "ул. Мира, 19", "surface": "Асфальт", "lighting": false, "nets": true, "favorite": false, "rating": 3.7, "players": 5 },
+  { "id": 5, "name": "Корт СК «Юность»", "address": "ул. Еремина, 12", "surface": "Паркет", "lighting": true, "nets": true, "favorite": false, "rating": 4.9, "players": 20 },
+  { "id": 6, "name": "Стритбольная клетка на Радищева", "address": "ул. Радищева, 33", "surface": "Резина", "lighting": true, "nets": false, "favorite": false, "rating": 4.3, "players": 7 },
+  { "id": 7, "name": "Площадка стадиона «Динамо»", "address": "ул. Ельцина, 8", "surface": "Асфальт", "lighting": true, "nets": true, "favorite": false, "rating": 4.5, "players": 18 },
+  { "id": 8, "name": "Корт на 8 Марта", "address": "ул. 8 Марта, 62", "surface": "Резина", "lighting": true, "nets": true, "favorite": true, "rating": 4.0, "players": 11 },
+  { "id": 9, "name": "Корт в парке УрГУПС", "address": "ул. Дзержинского, 14", "surface": "Асфальт", "lighting": false, "nets": false, "favorite": false, "rating": 3.9, "players": 4 }
+]

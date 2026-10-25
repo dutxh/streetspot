@@ -37,9 +37,33 @@
       <section class="section">
         <h1 class="section-title">Площадки в твоем городе</h1>
 
-        <div class="search-input-group catalog-search">
-          <label for="catalog-query" class="skrytyy">Поиск площадки</label>
-          <input type="search" id="catalog-query" class="form-input catalog-query" placeholder="Поиск по названию или адресу">
+        <div class="catalog-controls">
+          <div class="search-input-group catalog-search">
+            <label for="catalog-query" class="skrytyy">Поиск площадки</label>
+            <input type="search" id="catalog-query" class="form-input catalog-query" placeholder="Поиск по названию или адресу">
+          </div>
+
+          <select class="form-control catalog-filter-surface" aria-label="Покрытие">
+            <option value="all">Все покрытия</option>
+            <option value="Резина">Резиновая крошка</option>
+            <option value="Асфальт">Асфальт</option>
+            <option value="Паркет">Паркет / Зал</option>
+          </select>
+
+          <select class="form-control catalog-sort" aria-label="Сортировка">
+            <option value="default">По умолчанию</option>
+            <option value="name-asc">Название: А → Я</option>
+            <option value="name-desc">Название: Я → А</option>
+            <option value="rating">По рейтингу</option>
+            <option value="players">По числу игроков</option>
+          </select>
+        </div>
+
+        <p class="catalog-count-line">Найдено: <span class="catalog-count">0</span></p>
+
+        <div class="catalog-state" aria-live="polite">
+          <p class="catalog-state-text"></p>
+          <button type="button" class="btn btn-accent catalog-retry" hidden>Повторить попытку</button>
         </div>
 
         <div class="setka-kartochek" id="courts-list"></div>
@@ -66,6 +90,7 @@
     </div>
   </footer>
 
+  <script src="js/api.js"></script>
   <script src="js/script.js"></script>
 
 </body>

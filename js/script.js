@@ -2,6 +2,9 @@
 
 console.log('Street Spot: скрипты подключены');
 
+let courts = [];
+const favorites = new Set();
+
 function escapeHtml(value) {
   return String(value)
     .replace(/&/g, '&amp;')
@@ -154,26 +157,20 @@ function initAccordion() {
   });
 }
 
-const courts = [
-  { id: 1, name: 'Корт в парке Павлика Морозова', address: 'ул. Декабристов, 16/18г', surface: 'Резина', lighting: true, nets: true, favorite: false },
-  { id: 2, name: 'Площадка на Набережной', address: 'ул. Горького, 4а', surface: 'Резина', lighting: true, nets: true, favorite: false },
-  { id: 3, name: 'Корт в парке Маяковского', address: 'ул. Мичурина, 230', surface: 'Асфальт', lighting: false, nets: true, favorite: false },
-  { id: 4, name: 'Дворовый корт на Мира', address: 'ул. Мира, 19', surface: 'Асфальт', lighting: false, nets: true, favorite: false },
-  { id: 5, name: 'Корт СК «Юность»', address: 'ул. Еремина, 12', surface: 'Паркет', lighting: true, nets: true, favorite: false },
-  { id: 6, name: 'Стритбольная клетка на Радищева', address: 'ул. Радищева, 33', surface: 'Резина', lighting: true, nets: false, favorite: false },
-  { id: 7, name: 'Площадка стадиона «Динамо»', address: 'ул. Ельцина, 8', surface: 'Асфальт', lighting: true, nets: true, favorite: false },
-  { id: 8, name: 'Корт на 8 Марта', address: 'ул. 8 Марта, 62', surface: 'Резина', lighting: true, nets: true, favorite: true },
-  { id: 9, name: 'Корт в парке УрГУПС', address: 'ул. Дзержинского, 14', surface: 'Асфальт', lighting: false, nets: false, favorite: false }
-];
-
 function initCatalog() {
   const list = document.querySelector('#courts-list');
-  const empty = document.querySelector('.catalog-empty');
-  const search = document.querySelector('.catalog-query');
 
   if (!list) {
     return;
   }
+
+  const search = document.querySelector('.catalog-query');
+  const surfaceFilter = document.querySelector('.catalog-filter-surface');
+  const sortSelect = document.querySelector('.catalog-sort');
+  const counter = document.querySelector('.catalog-count');
+  const empty = document.querySelector('.catalog-empty');
+  const stateText = document.querySelector('.catalog-state-text');
+  const retryButton = document.querySelector('.catalog-retry');
 
   function buildCard(court) {
     const features = [court.surface];
@@ -184,8 +181,8 @@ function initCatalog() {
       features.push('Сетки');
     }
 
-    const activeClass = court.favorite ? ' active' : '';
-    const pressed = String(court.favorite);
+    const isFavorite = favorites.has(court.id);
+    const activeClass = isFavorite ? ' active' : '';
 
     return `
       <article class="court-card" data-id="${court.id}">
@@ -193,7 +190,7 @@ function initCatalog() {
         <p class="court-card-desc">${escapeHtml(court.address)} • ${escapeHtml(features.join(' • '))}</p>
         <div class="court-card-actions">
           <a href="court.html" class="btn btn-secondary">Подробнее</a>
-          <button type="button" class="favorite-btn${activeClass}" aria-pressed="${pressed}" aria-label="Добавить в избранное">&hearts;</button>
+          <button type="button" class="favorite-btn${activeClass}" aria-pressed="${isFavorite}" aria-label="Добавить в избранное">&hearts;</button>
         </div>
       </article>
     `;
@@ -215,6 +212,76 @@ function initCatalog() {
     list.innerHTML = items.map(buildCard).join('');
   }
 
+  function applyFilters() {
+    const query = (search ? search.value : '').trim().toLowerCase();
+    const surface = surfaceFilter ? surfaceFilter.value : 'all';
+    const sort = sortSelect ? sortSelect.value : 'default';
+
+    const filtered = courts.filter((court) => {
+      const matchesQuery = court.name.toLowerCase().includes(query)
+        || court.address.toLowerCase().includes(query);
+      const matchesSurface = surface === 'all' || court.surface === surface;
+
+      return matchesQuery && matchesSurface;
+    });
+
+    const sorted = [...filtered];
+
+    if (sort === 'name-asc') {
+      sorted.sort((a, b) => a.name.localeCompare(b.name, 'ru'));
+    } else if (sort === 'name-desc') {
+      sorted.sort((a, b) => b.name.localeCompare(b.name, 'ru'));
+    } else if (sort === 'rating') {
+      sorted.sort((a, b) => b.rating - a.rating);
+    } else if (sort === 'players') {
+      sorted.sort((a, b) => b.players - a.players);
+    }
+
+    if (counter) {
+      counter.textContent = sorted.length;
+    }
+
+    renderCourts(sorted);
+  }
+
+  function showState(message, withRetry) {
+    if (stateText) {
+      stateText.textContent = message;
+    }
+    if (retryButton) {
+      retryButton.hidden = !withRetry;
+    }
+  }
+
+  async function loadCourts() {
+    showState('Загрузка площадок…', false);
+    list.innerHTML = '';
+    if (empty) {
+      empty.hidden = true;
+    }
+
+    if (typeof getCourts !== 'function') {
+      showState('Не удалось загрузить площадки.', true);
+      return;
+    }
+
+    try {
+      const data = await getCourts();
+      courts = data;
+      favorites.clear();
+      courts.forEach((court) => {
+        if (court.favorite) {
+          favorites.add(court.id);
+        }
+      });
+
+      showState('', false);
+      applyFilters();
+    } catch {
+      showState('Не удалось загрузить площадки. Проверьте соединение и повторите попытку.', true);
+    }
+  }
+
   list.addEventListener('click', (event) => {
     const button = event.target.closest('.favorite-btn');
 
@@ -223,31 +290,33 @@ function initCatalog() {
     }
 
     const card = button.closest('.court-card');
-    const court = courts.find((item) => item.id === Number(card.dataset.id));
+    const id = Number(card.dataset.id);
 
-    if (!court) {
-      return;
+    if (favorites.has(id)) {
+      favorites.delete(id);
+    } else {
+      favorites.add(id);
     }
 
-    court.favorite = !court.favorite;
-    button.classList.toggle('active', court.favorite);
-    button.setAttribute('aria-pressed', String(court.favorite));
+    const isFavorite = favorites.has(id);
+    button.classList.toggle('active', isFavorite);
+    button.setAttribute('aria-pressed', String(isFavorite));
   });
 
   if (search) {
-    search.addEventListener('input', () => {
-      const query = search.value.trim().toLowerCase();
-
-      const filtered = courts.filter((court) => {
-        return court.name.toLowerCase().includes(query)
-          || court.address.toLowerCase().includes(query);
-      });
-
-      renderCourts(filtered);
-    });
+    search.addEventListener('input', applyFilters);
+  }
+  if (surfaceFilter) {
+    surfaceFilter.addEventListener('change', applyFilters);
+  }
+  if (sortSelect) {
+    sortSelect.addEventListener('change', applyFilters);
+  }
+  if (retryButton) {
+    retryButton.addEventListener('click', loadCourts);
   }
 
-  renderCourts(courts);
+  loadCourts();
 }
 
 function initFormValidation() {
