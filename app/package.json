@@ -1,0 +1,20 @@
+{
+  "name": "street-spot-server",
+  "version": "1.0.0",
+  "description": "Express-сервер и REST API для сервиса Street Spot",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js"
+  },
+  "keywords": [
+    "express",
+    "api",
+    "street-spot"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.3.0"
+  }
+}
