@@ -14,6 +14,44 @@ function escapeHtml(value) {
     .replace(/'/g, '&#39;');
 }
 
+function courtCardHtml(court) {
+  const features = [court.surface];
+  if (court.lighting) {
+    features.push('Освещение');
+  }
+  if (court.nets) {
+    features.push('Сетки');
+  }
+
+  const isFavorite = favorites.has(court.id);
+
+  return `
+    <article class="court-card" data-id="${court.id}">
+      <h2 class="court-card-title">${escapeHtml(court.name)}</h2>
+      <p class="court-card-desc">${escapeHtml(court.address)} • ${escapeHtml(features.join(' • '))}</p>
+      <div class="court-card-actions">
+        <a href="court.html" class="btn btn-secondary">Подробнее</a>
+        <button type="button" class="favorite-btn${isFavorite ? ' active' : ''}" aria-pressed="${isFavorite}" aria-label="Добавить в избранное">&hearts;</button>
+      </div>
+    </article>
+  `;
+}
+
+function toggleFavorite(button) {
+  const card = button.closest('.court-card');
+  const id = Number(card.dataset.id);
+
+  if (favorites.has(id)) {
+    favorites.delete(id);
+  } else {
+    favorites.add(id);
+  }
+
+  const isFavorite = favorites.has(id);
+  button.classList.toggle('active', isFavorite);
+  button.setAttribute('aria-pressed', String(isFavorite));
+}
+
 function initMobileNav() {
   const toggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('.nav');
@@ -172,30 +210,6 @@ function initCatalog() {
   const stateText = document.querySelector('.catalog-state-text');
   const retryButton = document.querySelector('.catalog-retry');
 
-  function buildCard(court) {
-    const features = [court.surface];
-    if (court.lighting) {
-      features.push('Освещение');
-    }
-    if (court.nets) {
-      features.push('Сетки');
-    }
-
-    const isFavorite = favorites.has(court.id);
-    const activeClass = isFavorite ? ' active' : '';
-
-    return `
-      <article class="court-card" data-id="${court.id}">
-        <h2 class="court-card-title">${escapeHtml(court.name)}</h2>
-        <p class="court-card-desc">${escapeHtml(court.address)} • ${escapeHtml(features.join(' • '))}</p>
-        <div class="court-card-actions">
-          <a href="court.html" class="btn btn-secondary">Подробнее</a>
-          <button type="button" class="favorite-btn${activeClass}" aria-pressed="${isFavorite}" aria-label="Добавить в избранное">&hearts;</button>
-        </div>
-      </article>
-    `;
-  }
-
   function renderCourts(items) {
     if (items.length === 0) {
       list.innerHTML = '';
@@ -209,7 +223,7 @@ function initCatalog() {
       empty.hidden = true;
     }
 
-    list.innerHTML = items.map(buildCard).join('');
+    list.innerHTML = items.map(courtCardHtml).join('');
   }
 
   function applyFilters() {
@@ -285,22 +299,9 @@ function initCatalog() {
   list.addEventListener('click', (event) => {
     const button = event.target.closest('.favorite-btn');
 
-    if (!button) {
-      return;
+    if (button) {
+      toggleFavorite(button);
     }
-
-    const card = button.closest('.court-card');
-    const id = Number(card.dataset.id);
-
-    if (favorites.has(id)) {
-      favorites.delete(id);
-    } else {
-      favorites.add(id);
-    }
-
-    const isFavorite = favorites.has(id);
-    button.classList.toggle('active', isFavorite);
-    button.setAttribute('aria-pressed', String(isFavorite));
   });
 
   if (search) {
@@ -317,6 +318,138 @@ function initCatalog() {
   }
 
   loadCourts();
+}
+
+function initHomePage() {
+  const popularList = document.querySelector('#popular-list');
+  const catalogList = document.querySelector('#home-catalog-list');
+
+  if (!popularList && !catalogList) {
+    return;
+  }
+
+  const search = document.querySelector('.home-search');
+  const filterBoxes = document.querySelectorAll('.home-filters input');
+  const stateText = document.querySelector('.home-state-text');
+  const empty = document.querySelector('.home-empty');
+
+  const surfaceMap = {
+    rubber: 'Резина',
+    asphalt: 'Асфальт',
+    parquet: 'Паркет'
+  };
+
+  function selectedValues(name) {
+    return Array.from(document.querySelectorAll(`.home-filters input[name="${name}"]`))
+      .filter((box) => box.checked)
+      .map((box) => box.value);
+  }
+
+  function renderPopular() {
+    if (!popularList) {
+      return;
+    }
+
+    const top = [...courts].sort((a, b) => b.rating - a.rating).slice(0, 3);
+    popularList.innerHTML = top.map(courtCardHtml).join('');
+  }
+
+  function applyHomeFilters() {
+    if (!catalogList) {
+      return;
+    }
+
+    const query = (search ? search.value : '').trim().toLowerCase();
+    const surfaces = selectedValues('surface').map((value) => surfaceMap[value] || value);
+    const features = selectedValues('feature');
+
+    const result = courts.filter((court) => {
+      const matchesQuery = court.name.toLowerCase().includes(query)
+        || court.address.toLowerCase().includes(query);
+      const matchesSurface = surfaces.length === 0 || surfaces.includes(court.surface);
+      const matchesFeatures = features.every((feature) => {
+        if (feature === 'lighting') {
+          return court.lighting;
+        }
+        if (feature === 'net') {
+          return court.nets;
+        }
+        return true;
+      });
+
+      return matchesQuery && matchesSurface && matchesFeatures;
+    });
+
+    if (empty) {
+      empty.hidden = result.length !== 0;
+    }
+
+    catalogList.innerHTML = result.map(courtCardHtml).join('');
+  }
+
+  function showState(message) {
+    if (stateText) {
+      stateText.textContent = message;
+    }
+  }
+
+  async function loadHome() {
+    showState('Загрузка площадок…');
+
+    if (typeof getCourts !== 'function') {
+      showState('Не удалось загрузить площадки.');
+      return;
+    }
+
+    try {
+      const data = await getCourts();
+      courts = data;
+      favorites.clear();
+      courts.forEach((court) => {
+        if (court.favorite) {
+          favorites.add(court.id);
+        }
+      });
+
+      showState('');
+      renderPopular();
+      applyHomeFilters();
+    } catch {
+      showState('Не удалось загрузить площадки. Проверьте соединение.');
+    }
+  }
+
+  [popularList, catalogList].forEach((container) => {
+    if (!container) {
+      return;
+    }
+
+    container.addEventListener('click', (event) => {
+      const button = event.target.closest('.favorite-btn');
+
+      if (button) {
+        toggleFavorite(button);
+      }
+    });
+  });
+
+  if (search) {
+    search.addEventListener('input', applyHomeFilters);
+
+    const searchForm = search.closest('form');
+    if (searchForm) {
+      searchForm.addEventListener('submit', (event) => event.preventDefault());
+    }
+  }
+
+  filterBoxes.forEach((box) => box.addEventListener('change', applyHomeFilters));
+
+  const filterForm = document.querySelector('.home-filters');
+  if (filterForm) {
+    filterForm.addEventListener('submit', (event) => event.preventDefault());
+  }
+
+  loadHome();
 }
 
 function initFormValidation() {
@@ -409,5 +542,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initModal();
   initAccordion();
   initCatalog();
+  initHomePage();
   initFormValidation();
 });

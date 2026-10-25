@@ -39,25 +39,7 @@
 
       <section class="section">
         <h2 class="section-title">Популярные баскетбольные площадки:</h2>
-        <div class="setka-kartochek">
-          <article class="court-card">
-            <h3 class="court-card-title">Площадка в парке имени Павлика Морозова</h3>
-            <p class="court-card-desc">ул. Декабристов 16/18г • Резиновое покрытие • Сетки</p>
-            <a href="court.html" class="btn btn-secondary">Подробнее</a>
-          </article>
-
-          <article class="court-card">
-            <h3 class="court-card-title">Площадка 2</h3>
-            <p class="court-card-desc">Набережная • 2 полноразмерных кольца • Свет</p>
-            <a href="court.html" class="btn btn-secondary">Подробнее</a>
-          </article>
-
-          <article class="court-card">
-            <h3 class="court-card-title">Площадка 3</h3>
-            <p class="court-card-desc">Парк Маяковского • Асфальт • 3х3 корт</p>
-            <a href="court.html" class="btn btn-secondary">Подробнее</a>
-          </article>
-        </div>
+        <div class="setka-kartochek" id="popular-list"></div>
       </section>
 
       <section class="section">
@@ -76,7 +58,7 @@
           <form class="search-form" action="#" method="get">
             <div class="search-input-group">
               <label for="search-input" class="skrytyy">Поиск площадки</label>
-              <input type="search" id="search-input" name="query" class="form-input" placeholder="Поиск">
+              <input type="search" id="search-input" name="query" class="form-input home-search" placeholder="Поиск">
               <button type="submit" class="btn btn-search">Найти</button>
             </div>
           </form>
@@ -84,7 +66,7 @@
           <aside class="filter-sidebar" aria-label="Параметры фильтрации площадок">
             <details class="filter-details">
               <summary class="filter-toggle-btn">Фильтры</summary>
-              <form class="filters-form" action="#" method="get">
+              <form class="filters-form home-filters" action="#" method="get">
                 <fieldset class="filter-group">
                   <legend class="filter-legend">Покрытие</legend>
                   <label class="filter-checkbox"><input type="checkbox" name="surface" value="rubber"> Резина</label>
@@ -96,32 +78,18 @@
                   <label class="filter-checkbox"><input type="checkbox" name="feature" value="lighting"> Освещение</label>
                   <label class="filter-checkbox"><input type="checkbox" name="feature" value="net"> Сетка на кольцах</label>
                 </fieldset>
-
-                <button type="submit" class="btn btn-accent">Применить</button>
               </form>
             </details>
           </aside>
         </div>
 
-        <div class="setka-kartochek">
-          <article class="court-card">
-            <h3 class="court-card-title">Площадка 1</h3>
-            <p class="court-card-desc">ул. Ленина, 45 • Резиновое покрытие • Сетки</p>
-            <a href="court.html" class="btn btn-secondary">Подробнее</a>
-          </article>
-
-          <article class="court-card">
-            <h3 class="court-card-title">Площадка 2</h3>
-            <p class="court-card-desc">Набережная • 2 полноразмерных кольца • Свет</p>
-            <a href="court.html" class="btn btn-secondary">Подробнее</a>
-          </article>
-
-          <article class="court-card">
-            <h3 class="court-card-title">Площадка 3</h3>
-            <p class="court-card-desc">Парк Маяковского • Асфальт • 3х3 корт</p>
-            <a href="court.html" class="btn btn-secondary">Подробнее</a>
-          </article>
+        <div class="catalog-state" aria-live="polite">
+          <p class="catalog-state-text home-state-text"></p>
         </div>
+
+        <div class="setka-kartochek" id="home-catalog-list"></div>
+
+        <p class="catalog-empty home-empty" hidden>Площадки не найдены</p>
       </section>
 
     </div>
@@ -139,6 +107,7 @@
     </div>
   </footer>
 
+  <script src="js/api.js"></script>
   <script src="js/script.js"></script>
 
 </body>
