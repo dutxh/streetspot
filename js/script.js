@@ -31,7 +31,7 @@ function courtCardHtml(court) {
       <p class="court-card-desc">${escapeHtml(court.address)} • ${escapeHtml(features.join(' • '))}</p>
       <div class="court-card-actions">
         <a href="court.html" class="btn btn-secondary">Подробнее</a>
-        <button type="button" class="favorite-btn${isFavorite ? ' active' : ''}" aria-pressed="${isFavorite}" aria-label="Добавить в избранное">&hearts;</button>
+        <button type="button" class="favorite-btn${isFavorite ? ' active' : ''}" aria-pressed="${isFavorite}" aria-label="Добавить в избранное"></button>
       </div>
     </article>
   `;
@@ -354,6 +354,18 @@ function initHomePage() {
     popularList.innerHTML = top.map(courtCardHtml).join('');
   }
 
+  function renderHeroStats() {
+    const courtsStat = document.querySelector('#hero-courts');
+    const playersStat = document.querySelector('#hero-players');
+
+    if (courtsStat) {
+      courtsStat.textContent = courts.length;
+    }
+    if (playersStat) {
+      playersStat.textContent = courts.reduce((sum, court) => sum + (court.players || 0), 0);
+    }
+  }
+
   function applyHomeFilters() {
     if (!catalogList) {
       return;
@@ -413,6 +425,7 @@ function initHomePage() {
 
       showState('');
       renderPopular();
+      renderHeroStats();
       applyHomeFilters();
     } catch {
       showState('Не удалось загрузить площадки. Проверьте соединение.');
@@ -448,6 +461,17 @@ function initHomePage() {
   if (filterForm) {
     filterForm.addEventListener('submit', (event) => event.preventDefault());
   }
+
+  document.querySelectorAll('.hero-quick-item[data-filter]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const box = document.querySelector(`.home-filters input[name="${link.dataset.filter}"][value="${link.dataset.value}"]`);
+
+      if (box) {
+        box.checked = true;
+        applyHomeFilters();
+      }
+    });
+  });
 
   loadHome();
 }
