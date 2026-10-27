@@ -37,6 +37,68 @@
       
       <h1 class="skrytyy">Street Spot — поиск и обзор баскетбольных площадок</h1>
 
+      <section class="hero-section">
+        <div class="hero-container">
+          <div class="hero-info-card">
+            <h2 class="hero-headline">Всё для стритбола в одном месте</h2>
+
+            <div class="hero-quick-grid">
+              <a href="courts.html" class="hero-quick-item">
+                <img src="img/ball.svg" alt="" class="hero-item-icon">
+                <span class="hero-item-title">Все площадки</span>
+              </a>
+              <a href="#home-catalog-list" class="hero-quick-item" data-filter="feature" data-value="lighting">
+                <img src="img/light.svg" alt="" class="hero-item-icon">
+                <span class="hero-item-title">С освещением</span>
+              </a>
+              <a href="#home-catalog-list" class="hero-quick-item" data-filter="surface" data-value="rubber">
+                <img src="img/kort.svg" alt="" class="hero-item-icon">
+                <span class="hero-item-title">Резиновый корт</span>
+              </a>
+              <a href="add-court.html" class="hero-quick-item">
+                <img src="img/plus.svg" alt="" class="hero-item-icon">
+                <span class="hero-item-title">Добавить корт</span>
+              </a>
+            </div>
+
+            <div class="hero-stats-row">
+              <div class="hero-stat-cell">
+                <span class="hero-stat-number" id="hero-courts">—</span>
+                <span class="hero-stat-label">площадок</span>
+              </div>
+              <div class="hero-stat-cell">
+                <span class="hero-stat-number" id="hero-players">—</span>
+                <span class="hero-stat-label">игроков</span>
+              </div>              
+            </div>
+
+            <a href="login.html" class="btn btn-accent hero-cta-btn">Присоединиться</a>
+          </div>
+
+          <div class="hero-modes-column">
+            <div class="hero-mode-card hero-mode-solo">
+              <div class="hero-mode-overlay"></div>
+              <div class="hero-mode-body">
+                <span class="hero-mode-badge">Соло</span>
+                <h3 class="hero-mode-title">Тренировка?</h3>
+                <p class="hero-mode-text">Найди споты со свободными кольцами и целыми сетками для отработки броска.</p>
+                <a href="#home-catalog-list" class="btn hero-mode-btn">Выбрать корт</a>
+              </div>
+            </div>
+
+            <div class="hero-mode-card hero-mode-team">
+              <div class="hero-mode-overlay"></div>
+              <div class="hero-mode-body">
+                <span class="hero-mode-badge">Команда</span>
+                <h3 class="hero-mode-title">Матч 3х3?</h3>
+                <p class="hero-mode-text">Лучшие площадки с освещением, где вечером всегда собираются на игру.</p>
+                <a href="#popular-list" class="btn hero-mode-btn">Смотреть топ</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="section">
         <h2 class="section-title">Популярные баскетбольные площадки:</h2>
         <div class="setka-kartochek" id="popular-list"></div>
