@@ -34,9 +34,14 @@
 
   <main class="main-content">
     <div class="container">
-      <h1 class="section-title page-heading">Корт в парке имени Павлика Морозова</h1>
+      <h1 class="section-title page-heading" id="court-title">Загрузка площадки…</h1>
 
-      <div class="court-detail-layout">
+      <div class="court-state" aria-live="polite">
+        <p class="court-state-text">Загрузка площадки…</p>
+        <a href="courts.html" class="btn btn-accent court-back-link" hidden>Вернуться к списку площадок</a>
+      </div>
+
+      <div class="court-detail-layout" id="court-detail">
         <section class="court-card court-main-info">
           <h2 class="court-card-title">Информация о площадке</h2>
           
@@ -45,10 +50,10 @@
           </figure>
 
           <div class="court-specs">
-            <p><strong>Адрес:</strong> Парк имени Павлика Морозова, ул. Декабристов 16/18г</p>
-            <p><strong>Покрытие:</strong> Бесшовная резиновая крошка</p>
-            <p><strong>Кольца:</strong> 8 полноразмерных колец с сетками</p>
-            <p><strong>Освещение:</strong> Работает круглосуточно</p>
+            <p><strong>Адрес:</strong> <span class="court-address">—</span></p>
+            <p><strong>Покрытие:</strong> <span class="court-surface">—</span></p>
+            <p><strong>Кольца:</strong> <span class="court-nets">—</span></p>
+            <p><strong>Освещение:</strong> <span class="court-lighting">—</span></p>
             <p><strong>Доступ:</strong> Свободный, бесплатный</p>
           </div>
 
@@ -184,6 +189,7 @@
     </div>
   </div>
 
+  <script src="js/api.js"></script>
   <script src="js/script.js"></script>
 
 </body>

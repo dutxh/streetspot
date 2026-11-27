@@ -55,12 +55,13 @@ router.post('/', (req, res) => {
     id: nextId(),
     name: req.body.name.trim(),
     address: req.body.address.trim(),
-    surface: req.body.surface,
+    surface: surfaceMap[req.body.surface] || req.body.surface,
     lighting: req.body.lighting,
     nets: req.body.nets,
     favorite: false,
     rating: typeof req.body.rating === 'number' ? req.body.rating : 0,
-    players: typeof req.body.players === 'number' ? req.body.players : 0
+    players: typeof req.body.players === 'number' ? req.body.players : 0,
+    image: req.body.image || 'img/court-photo1.png'
   };
 
   courts.push(court);
@@ -111,7 +112,9 @@ router.patch('/:id', (req, res) => {
 
   allowedFields.forEach((field) => {
     if (Object.prototype.hasOwnProperty.call(req.body, field)) {
-      court[field] = req.body[field];
+      court[field] = field === 'surface'
+        ? (surfaceMap[req.body.surface] || req.body.surface)
+        : req.body[field];
     }
   });
 

@@ -36,8 +36,8 @@
     <div class="container">
       <section class="section">
         <div class="shapka-razdela">
-          <h1 class="section-title">Добавить площадку</h1>
-          <span class="metka">4 шага</span>
+          <h1 class="section-title" id="add-court-title">Добавить площадку</h1>
+          <span class="metka" id="add-court-badge">4 шага</span>
         </div>
 
         <form action="#" method="post" enctype="multipart/form-data" class="add-court-form" novalidate>
@@ -104,15 +104,18 @@
                 <div class="spisok-radio">
                   <label class="filter-checkbox"><input type="radio" name="surface" value="rubber" checked> Резиновая крошка</label>
                   <label class="filter-checkbox"><input type="radio" name="surface" value="asphalt"> Асфальт</label>
-                  <label class="filter-checkbox"><input type="radio" name="surface" value="wood"> Паркет / Дерево</label>
+                  <label class="filter-checkbox"><input type="radio" name="surface" value="parquet"> Паркет / Дерево</label>
                 </div>
+                <span class="field-error" data-error-for="court-surface"></span>
               </div>
 
               <div class="blok-filtrov">
                 <p class="filter-subtitle">Особенности и инвентарь</p>
                 <div class="spisok-chekboksov">
                   <label class="filter-checkbox"><input type="checkbox" name="lighting" value="yes"> Освещение вечером</label>
+                  <span class="field-error" data-error-for="court-lighting"></span>
                   <label class="filter-checkbox"><input type="checkbox" name="rings_net" value="yes"> Сетки на кольцах</label>
+                  <span class="field-error" data-error-for="court-nets"></span>
                   <label class="filter-checkbox"><input type="checkbox" name="fenced" value="yes"> Ограждение площадки</label>
                 </div>
               </div>
@@ -124,8 +127,14 @@
             <button type="submit" class="btn btn-accent btn-large">Добавить площадку</button>
           </div>
 
-          <p class="form-success" hidden>Площадка успешно отправлена на модерацию!</p>
+          <p class="form-server-error field-error" hidden></p>
+          <p class="form-success" hidden>Площадка успешно добавлена в каталог!</p>
         </form>
+
+        <div class="add-court-result" id="new-court-result" hidden>
+          <h2 class="section-title" id="new-court-result-title">Площадка в каталоге</h2>
+          <div class="setka-kartochek" id="new-court-list"></div>
+        </div>
       </section>
     </div>
   </main>
@@ -142,6 +151,7 @@
     </div>
   </footer>
 
+  <script src="js/api.js"></script>
   <script src="js/script.js"></script>
 
 </body>
