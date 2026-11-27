@@ -608,6 +608,13 @@ body {
   font-weight: 700;
 }
 
+.players-more {
+  padding: 8px 14px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
 .players-counter {
   margin-top: 12px;
   font-size: 15px;
@@ -1308,8 +1315,15 @@ body {
 
 .court-card-actions {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 12px;
+}
+
+.court-action-btn {
+  width: 124px;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .favorite-btn {
@@ -1729,4 +1743,36 @@ body.no-scroll {
   .hero-mode-card {
     min-height: 260px;
   }
+}
+.btn-danger {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.btn-danger:hover {
+  background-color: #fecaca;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.court-state {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.court-state-text {
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+.court-back-link {
+  margin-top: 16px;
+}
+
+.add-court-result {
+  margin-top: 32px;
 }
